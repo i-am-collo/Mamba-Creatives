@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamba Creatives | Digital Art Exhibition</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Custom Avant-Garde Cursor -->
+    <div class="custom-cursor-dot" id="cursorDot"></div>
+    <div class="custom-cursor-ring" id="cursorRing"></div>
+
+    <!-- Sticky Navigation Bar -->
+    <header class="navbar-header" id="header">
+        <div class="nav-container">
+            <!-- Brand Logo with Secret 5x Click Trigger -->
+            <a href="#" class="brand-logo" id="brandLogo" title="Click 5x fast to open Creator Studio">
+                <span class="logo-mark" style="font-weight: 900; font-family: var(--font-sans);">MC</span>
+                <div class="logo-text">
+                    <span class="brand-title">Mamba Creatives</span>
+                    <span class="brand-subtitle">Exhibition Studio</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="#hero" class="nav-link active">Exhibition</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="#about" class="nav-link">Philosophy</a></li>
+                    <li><a href="#commissions" class="nav-link">Commissions</a></li>
+                </ul>
+
+                <!-- Mobile Social Links -->
+                <div class="mobile-social-group">
+                    <a href="https://www.youtube.com/@mambacreatives" target="_blank" rel="noopener noreferrer" class="social-icon-link" title="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.instagram.com/mambacreatives/" target="_blank" rel="noopener noreferrer" class="social-icon-link" title="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@mambacreatives" target="_blank" rel="noopener noreferrer" class="social-icon-link" title="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Social Links & Action -->
+            <div class="header-right">
+                <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <div class="header-social-links">
+                    <a href="https://www.youtube.com/@mambacreatives" target="_blank" rel="noopener noreferrer" class="social-btn yt" title="YouTube Channel">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.instagram.com/mambacreatives/" target="_blank" rel="noopener noreferrer" class="social-btn ig" title="Instagram Profile">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@mambacreatives" target="_blank" rel="noopener noreferrer" class="social-btn tt" title="TikTok Profile">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                </div>
+
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero Exhibition Banner -->
+        <section class="hero-section" id="hero">
+            <div class="hero-ambient-glow"></div>
+            <div class="hero-container">
+                <div class="hero-content reveal-on-scroll">
+                    <h1 class="exhibition-title">Stitching Stories<br>One Thread At A Time</h1>
+                    <div class="hero-actions">
+                        <a href="#gallery" class="btn-primary">
+                            <span>Explore Gallery</span>
+                            <i class="fa-solid fa-arrow-down-long"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual-frame reveal-on-scroll">
+                    <div class="artwork-hero-box" id="heroFeaturedBox">
+                        <div class="hero-placeholder-visual">
+                            <i class="fa-solid fa-palette hero-placeholder-icon"></i>
+                            <h3>Mamba Creatives Gallery</h3>
+                            <p>Explore exclusive artworks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery & Asymmetrical Masonry Section -->
+        <section class="gallery-section" id="gallery">
+            <div class="section-container">
+
+                <div class="section-header reveal-on-scroll">
+                    <span class="section-tag">Interactive Portfolio</span>
+                    <h2 class="section-title">The Masterwork Collection</h2>
+                    <p class="section-subtitle">Click "Acquire" on any artwork to choose dimensions and initiate direct WhatsApp acquisition.</p>
+                </div>
+
+                <!-- Animated Category Filter Tabs -->
+                <div class="gallery-controls-wrapper reveal-on-scroll">
+                    <div class="category-tabs" id="categoryTabs" role="tablist">
+                        <button class="tab-btn active" data-category="all" role="tab">
+                            <i class="fa-solid fa-grid-2"></i> All Works
+                        </button>
+                        <button class="tab-btn" data-category="Face Portraits" role="tab">
+                            <i class="fa-solid fa-user-ninja"></i> Face Portraits
+                        </button>
+                        <button class="tab-btn" data-category="Clocks" role="tab">
+                            <i class="fa-solid fa-clock"></i> Clocks
+                        </button>
+                        <button class="tab-btn" data-category="QR Code Art" role="tab">
+                            <i class="fa-solid fa-qrcode"></i> QR Code Art
+                        </button>
+                        <button class="tab-btn" data-category="1 of 1" role="tab">
+                            <i class="fa-solid fa-crown"></i> 1 of 1 (Original Art)
+                        </button>
+                    </div>
+
+                    <!-- Search & Sort Controls -->
+                    <div class="filter-tools">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" id="searchInput" placeholder="Search artwork title..." aria-label="Search artwork">
+                            <button id="clearSearchBtn" class="clear-search-btn" title="Clear search"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <div class="sort-box">
+                            <label for="sortSelect"><i class="fa-solid fa-arrow-down-short-wide"></i></label>
+                            <select id="sortSelect" aria-label="Sort gallery">
+                                <option value="featured">Latest First</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="title">Alphabetical (A-Z)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Asymmetrical Editorial Gallery Grid -->
+                <div class="gallery-container" id="artGrid">
+                    <!-- Dynamic Editorial Artwork Cards Rendered via JS -->
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state hidden" id="emptyState">
+                    <i class="fa-solid fa-cloud-arrow-up empty-state-icon"></i>
+                    <h3>No Artworks in Gallery Yet</h3>
+                    <p>New masterpieces are being curated. Please check back later.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Philosophy / About Section -->
+        <section class="about-section" id="about">
+            <div class="section-container">
+                <div class="about-grid">
+                    <div class="about-visual reveal-on-scroll">
+                        <img src="collage/portrait_art.jpg" alt="Mamba Creatives Philosophy Art" class="about-hero-img">
+                    </div>
+                    <div class="about-content reveal-on-scroll">
+                        <span class="section-tag">Brand Philosophy</span>
+                        <h2 class="about-heading">Blending Thread Art with Modern Technology</h2>
+                        <p class="about-text">
+                            I am a Kenyan thread artist and founder of <strong>Mamba Creatives</strong>, specializing in creating intricate artworks using thousands of carefully placed threads. My practice combines thread art and mixed media techniques to transform simple materials into compelling visual narratives. Through portraits, wildlife pieces, and experimental works, I explore themes of identity, resilience, innovation, and harmony while pushing the boundaries of what can be achieved with thread as an artistic medium.
+                        </p>
+                        <div class="social-connect-bar">
+                            <span>Connect on Social:</span>
+                            <div class="social-pill-group">
+                                <a href="https://www.youtube.com/@mambacreatives" target="_blank" rel="noopener noreferrer" class="social-pill yt">
+                                    <i class="fa-brands fa-youtube"></i> YouTube
+                                </a>
+                                <a href="https://www.instagram.com/mambacreatives/" target="_blank" rel="noopener noreferrer" class="social-pill ig">
+                                    <i class="fa-brands fa-instagram"></i> Instagram
+                                </a>
+                                <a href="https://www.tiktok.com/@mambacreatives" target="_blank" rel="noopener noreferrer" class="social-pill tt">
+                                    <i class="fa-brands fa-tiktok"></i> TikTok
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Custom Commissions Section -->
+        <section class="commissions-section" id="commissions">
+            <div class="commissions-card reveal-on-scroll">
+                <span class="badge-gold"><i class="fa-solid fa-wand-magic-sparkles"></i> Custom Bespoke Orders</span>
+                <h2>Commission a Unique Masterpiece</h2>
+                <p>Have a custom face portrait idea, brand QR code artwork, or specific canvas dimension requirement? Reach out directly via WhatsApp to collaborate on a bespoke artwork.</p>
+                <a href="https://wa.me/254705393762?text=Hello%20Mamba%20Creatives.%20I%20am%20reaching%20out%20to%20discuss%20a%20custom%20artwork%20commission." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-lg">
+                    <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp Now
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Acquire & Dynamic Sizing Modal Overlay -->
+    <div class="modal-overlay hidden" id="acquireModal">
+        <div class="modal-dialog">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-body-container" id="modalBody">
+                <!-- Dynamically populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Secret "Creator Studio" Hidden Admin Panel -->
+    <div class="studio-overlay hidden" id="creatorStudioOverlay">
+        <div class="studio-dialog">
+            <div class="studio-header">
+                <div class="studio-title-group">
+                    <i class="fa-solid fa-photo-film studio-icon"></i>
+                    <div>
+                        <h3>Creator Studio Dashboard</h3>
+                        <span class="studio-subtitle">Upload new artworks & manage gallery collection</span>
+                    </div>
+                </div>
+                <button class="studio-close-btn" id="studioCloseBtn" aria-label="Close Studio">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Tabs: Add Artwork / Manage Works -->
+            <div class="studio-tabs">
+                <button class="studio-tab-btn active" id="tabAddArt">
+                    <i class="fa-solid fa-plus"></i> Upload New Artwork
+                </button>
+                <button class="studio-tab-btn" id="tabManageArt">
+                    <i class="fa-solid fa-list-check"></i> Manage Gallery (<span id="studioCountBadge">0</span>)
+                </button>
+            </div>
+
+            <!-- Panel 1: Upload Form -->
+            <form class="studio-form" id="studioForm">
+                <div class="form-group">
+                    <label>Upload Artwork Image File *</label>
+                    <div class="file-dropzone" id="fileDropzone">
+                        <input type="file" id="artImageFile" accept="image/*" class="file-input-hidden" required>
+                        <div class="dropzone-content" id="dropzoneContent">
+                            <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+                            <span class="dropzone-text">Click or drag image file here</span>
+                            <span class="dropzone-hint">Supports PNG, JPG, WEBP, GIF</span>
+                        </div>
+                        <div class="image-preview-container hidden" id="imagePreviewContainer">
+                            <img id="imagePreviewImg" src="" alt="Selected Image Preview">
+                            <button type="button" class="remove-preview-btn" id="removePreviewBtn" title="Choose another image">
+                                <i class="fa-solid fa-xmark"></i> Change Image
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="artTitle">Artwork Title *</label>
+                    <input type="text" id="artTitle" placeholder="e.g. Royal Nefertiti" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="artCategory">Category *</label>
+                        <select id="artCategory" required>
+                            <option value="Face Portraits">Face Portraits</option>
+                            <option value="Clocks">Clocks</option>
+                            <option value="QR Code Art">QR Code Art</option>
+                            <option value="1 of 1">1 of 1 (Original Art)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="artBasePrice">Base Price ($ USD) *</label>
+                        <input type="number" id="artBasePrice" placeholder="e.g. 350" min="1" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="artMedium">Medium & Materials</label>
+                    <input type="text" id="artMedium" placeholder="e.g. Acrylic & 24K Gold Leaf on Canvas">
+                </div>
+
+                <div class="form-group">
+                    <label for="artDescription">Artwork Story / Description</label>
+                    <textarea id="artDescription" rows="2" placeholder="Brief description of the artwork..."></textarea>
+                </div>
+
+                <div class="studio-actions">
+                    <button type="submit" class="btn-primary" id="uploadSubmitBtn">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Upload & Add to Gallery
+                    </button>
+                    <button type="button" class="btn-outline-danger" id="resetStorageBtn" title="Clear all uploaded artworks">
+                        <i class="fa-solid fa-trash-can"></i> Clear All Works
+                    </button>
+                </div>
+            </form>
+
+            <!-- Panel 2: Manage & Delete Products List -->
+            <div class="studio-manage-panel hidden" id="studioManagePanel">
+                <div class="manage-list" id="manageList">
+                    <!-- Populated dynamically by app.js -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="brand-logo">
+                        <span class="logo-mark"><i class="fa-solid fa-paintbrush"></i></span>
+                        <div class="logo-text">
+                            <span class="brand-title">Mamba Creatives</span>
+                            <span class="brand-subtitle">Art Studio</span>
+                        </div>
+                    </a>
+                    <p class="footer-desc">
+                        Original face portraits, sculptural timepieces, scannable QR art, and 1 of 1 canvas originals.
+                    </p>
+                </div>
+
+                <div class="footer-nav">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#gallery" class="footer-filter-link" data-category="Face Portraits">Face Portraits</a></li>
+                        <li><a href="#gallery" class="footer-filter-link" data-category="Clocks">Clocks</a></li>
+                        <li><a href="#gallery" class="footer-filter-link" data-category="QR Code Art">QR Code Art</a></li>
+                        <li><a href="#gallery" class="footer-filter-link" data-category="1 of 1">1 of 1 Originals</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-nav">
+                    <h4>Direct Contact</h4>
+                    <ul>
+                        <li><a href="https://wa.me/254705393762" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp Studio</a></li>
+                        <li><a href="#about">Brand Philosophy</a></li>
+                        <li><a href="#commissions">Custom Orders</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-social-col">
+                    <h4>Official Channels</h4>
+                    <p>Follow our process and watch studio creation streams:</p>
+                    <div class="footer-social-icons">
+                        <a href="https://www.youtube.com/@mambacreatives" target="_blank" rel="noopener noreferrer" class="social-icon-btn yt" title="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a href="https://www.instagram.com/mambacreatives/" target="_blank" rel="noopener noreferrer" class="social-icon-btn ig" title="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@mambacreatives" target="_blank" rel="noopener noreferrer" class="social-icon-btn tt" title="TikTok">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="copyrightYear">2026</span> <strong>Mamba Creatives</strong>. All Rights Reserved.</p>
+                <div class="footer-social-text-links">
+                    <a href="https://www.youtube.com/@mambacreatives" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <span>&bull;</span>
+                    <a href="https://www.instagram.com/mambacreatives/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <span>&bull;</span>
+                    <a href="https://www.tiktok.com/@mambacreatives" target="_blank" rel="noopener noreferrer">TikTok</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTopBtn" title="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Application Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
