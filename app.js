@@ -15,6 +15,19 @@ const CONFIG = {
     }
 };
 
+// Firebase Configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCKTaZ2uer4ipr8ysGZG_lkhBsNNnPyeUs",
+  authDomain: "mambacreatives-c7e65.firebaseapp.com",
+  projectId: "mambacreatives-c7e65",
+  storageBucket: "mambacreatives-c7e65.firebasestorage.app",
+  messagingSenderId: "764560338556",
+  appId: "1:764560338556:web:1aa6d19e2133be752763f9",
+  measurementId: "G-7F08QN2HCH"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
 // Sizing Configurations & Scale Multipliers
 const SIZE_CONFIGS = {
     standard: [
@@ -61,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initCustomCursor();
     initScrollReveals();
     loadArtworks();
-    renderGallery();
     setupEventListeners();
     setupFileUploadHandlers();
     setupSecretTriggers();
@@ -170,24 +182,30 @@ function initScrollReveals() {
     revealElements.forEach(el => observer.observe(el));
 }
 
-// 3. Load Artworks from LocalStorage
+// 3. Load Artworks from Firestore
 function loadArtworks() {
-    const savedCustom = localStorage.getItem('mamba_custom_artworks');
-    let customList = [];
-    if (savedCustom) {
-        try { customList = JSON.parse(savedCustom); } catch (e) { customList = []; }
-    }
-    state.artworks = [...customList];
+    db.collection('artworks').orderBy('createdAt', 'desc').onSnapshot(snapshot => {
+        const customList = [];
+        snapshot.forEach(doc => {
+            customList.push({ id: doc.id, ...doc.data() });
+        });
+        
+        state.artworks = [...customList];
 
-    state.artworks.forEach(art => {
-        if (!(art.id in state.selectedSizes)) {
-            state.selectedSizes[art.id] = 0;
-        }
+        state.artworks.forEach(art => {
+            if (!(art.id in state.selectedSizes)) {
+                state.selectedSizes[art.id] = 0;
+            }
+        });
+
+        if (studioCountBadgeEl) studioCountBadgeEl.textContent = state.artworks.length;
+        updateHeroFeatured();
+        renderStudioManageList();
+        renderGallery();
+    }, error => {
+        console.error("Error fetching artworks: ", error);
+        alert("Failed to load global gallery data. Please check connection.");
     });
-
-    if (studioCountBadgeEl) studioCountBadgeEl.textContent = state.artworks.length;
-    updateHeroFeatured();
-    renderStudioManageList();
 }
 
 // Update Hero Visual Box with rotating collage (independent of gallery artworks)
@@ -403,27 +421,15 @@ function deleteArtwork(artId) {
     if (!art) return;
 
     if (confirm(`Are you sure you want to delete "${art.title}" from the gallery?`)) {
-        // Remove from state
-        state.artworks = state.artworks.filter(a => a.id !== artId);
-
-        // Remove from LocalStorage
-        const savedCustom = localStorage.getItem('mamba_custom_artworks');
-        if (savedCustom) {
-            try {
-                let customList = JSON.parse(savedCustom);
-                customList = customList.filter(a => a.id !== artId);
-                localStorage.setItem('mamba_custom_artworks', JSON.stringify(customList));
-            } catch (err) { }
-        }
-
-        // Close modal if open
-        if (state.activeModalArtId === artId) {
-            closeAcquireModal();
-        }
-
-        loadArtworks();
-        renderGallery();
-        showToast(`Removed "${art.title}" from gallery.`);
+        db.collection('artworks').doc(artId).delete().then(() => {
+            if (state.activeModalArtId === artId) {
+                closeAcquireModal();
+            }
+            showToast(`Removed "${art.title}" from gallery.`);
+        }).catch(error => {
+            console.error("Error removing document: ", error);
+            alert("Delete failed. " + error.message);
+        });
     }
 }
 
@@ -683,7 +689,6 @@ function handleStudioSubmit(e) {
     }
 
     const newArt = {
-        id: 'art-custom-' + Date.now(),
         title,
         category,
         basePrice,
@@ -692,22 +697,14 @@ function handleStudioSubmit(e) {
         description: description || 'Exclusive artwork created by Mamba Creatives.',
         featured: true,
         sizeType: category === 'Clocks' ? 'clocks' : 'standard',
-        heightClass: 'card-height-tall'
+        heightClass: 'card-height-tall',
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
     };
 
-    let customList = [];
-    const saved = localStorage.getItem('mamba_custom_artworks');
-    if (saved) {
-        try { customList = JSON.parse(saved); } catch (err) { customList = []; }
-    }
-    customList.unshift(newArt);
-    
-    try {
-        localStorage.setItem('mamba_custom_artworks', JSON.stringify(customList));
-        
-        loadArtworks();
-        renderGallery();
+    const submitBtn = document.getElementById('uploadSubmitBtn');
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading...'; }
 
+    db.collection('artworks').add(newArt).then(() => {
         studioFormEl.reset();
         resetImagePreview();
         closeCreatorStudio();
@@ -715,22 +712,26 @@ function handleStudioSubmit(e) {
 
         const gallerySection = document.getElementById('gallery');
         if (gallerySection) gallerySection.scrollIntoView({ behavior: 'smooth' });
-    } catch (e) {
-        if (e.name === 'QuotaExceededError' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED') {
-            alert('Browser storage is full! Image files are too large. Please use the "Clear All Works" button to free up space.');
-        } else {
-            alert('An error occurred while saving the artwork: ' + e.message);
-        }
-    }
+    }).catch(error => {
+        console.error("Error adding document: ", error);
+        alert("Upload failed. " + error.message);
+    }).finally(() => {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Upload & Add to Gallery'; }
+    });
 }
 
 function resetCustomStorage() {
-    if (confirm('Are you sure you want to clear all uploaded artworks from gallery storage?')) {
-        localStorage.removeItem('mamba_custom_artworks');
-        loadArtworks();
-        renderGallery();
-        closeCreatorStudio();
-        showToast('Cleared all gallery artwork files.');
+    if (confirm('Are you sure you want to clear all uploaded artworks from the LIVE global gallery?')) {
+        db.collection('artworks').get().then(snapshot => {
+            snapshot.docs.forEach(doc => {
+                doc.ref.delete();
+            });
+            closeCreatorStudio();
+            showToast('Cleared all gallery artwork files.');
+        }).catch(err => {
+            console.error("Error clearing gallery: ", err);
+            alert("Failed to clear gallery.");
+        });
     }
 }
 

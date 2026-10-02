@@ -1662,3 +1662,22 @@ h1, h2 {
     box-shadow: var(--shadow-card);
 }
 
+@media (max-width: 768px) {
+    .gallery-container {
+        grid-template-columns: 1fr;
+    }
+    .about-hero-img {
+        max-height: 400px;
+    }
+    .hero-rotating-collage, .artwork-hero-box {
+        min-height: 320px;
+    }
+    .hero-visual-frame {
+        max-width: 100%;
+    }
+    .btn-whatsapp-lg {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
