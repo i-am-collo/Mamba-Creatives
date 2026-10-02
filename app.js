@@ -17,13 +17,13 @@ const CONFIG = {
 
 // Firebase Configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCKTaZ2uer4ipr8ysGZG_lkhBsNNnPyeUs",
-  authDomain: "mambacreatives-c7e65.firebaseapp.com",
-  projectId: "mambacreatives-c7e65",
-  storageBucket: "mambacreatives-c7e65.firebasestorage.app",
-  messagingSenderId: "764560338556",
-  appId: "1:764560338556:web:1aa6d19e2133be752763f9",
-  measurementId: "G-7F08QN2HCH"
+  apiKey: "AIzaSyDxWq7pNgJz5EZ30HiIPDInN2SKzryEDt8",
+  authDomain: "mambacreatives-2d052.firebaseapp.com",
+  projectId: "mambacreatives-2d052",
+  storageBucket: "mambacreatives-2d052.firebasestorage.app",
+  messagingSenderId: "407514954011",
+  appId: "1:407514954011:web:f281158a4c4f0654c37bbe",
+  measurementId: "G-9WLHZCKPP7"
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
